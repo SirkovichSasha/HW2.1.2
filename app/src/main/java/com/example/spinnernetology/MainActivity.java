@@ -26,16 +26,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this
-                        ,mCountriesSpinner.getSelectedItem().toString()
+                        , mCountriesSpinner.getSelectedItem().toString()
                                 + " "
                                 + mCitiesSpinner.getSelectedItem().toString()
                                 + " "
                                 + mHouseNumberSpinner.getSelectedItem().toString()
-                        ,Toast.LENGTH_LONG)
+                        , Toast.LENGTH_LONG)
                         .show();
             }
         });
     }
+
     private void initViews() {
         mCountriesSpinner = findViewById(R.id.countriesSpinner);
         mCitiesSpinner = findViewById(R.id.citiesSpinner);
@@ -47,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initHousNumbersSpinner() {
         Integer[] houseNumbers = new Integer[50];
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= houseNumbers.length; i++) {
             houseNumbers[i - 1] = i;
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, houseNumbers);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, houseNumbers);
         mHouseNumberSpinner.setAdapter(adapter);
     }
 
@@ -61,11 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
         mCountriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 String[] countries = getResources().getStringArray(R.array.countries);
-                initSpinnerCities(countries[i]);
+                initSpinnerCities(countries[position]);
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
